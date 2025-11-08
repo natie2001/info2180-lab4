@@ -1,19 +1,141 @@
+/* ---------- Body & Background ---------- */
 body {
-    background-color: #888;
-    color: black;
+    margin: 0;
     font-family: Arial, sans-serif;
     text-align: center;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
     padding-top: 50px;
+    color: white;
 }
 
+/* Blurred, darkened background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("avengers.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(8px) brightness(50%); /* blur + darken */
+    z-index: -1;
+}
+
+/* Ensure content is above the background */
+#result-container, .search-container, h1 {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Page Title ---------- */
 h1 {
-    font-size: 2em;
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    font-size: 2.5em;
+    font-weight: bold;
+    border: 2px solid rgba(255,255,255,0.5);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: rgba(0,0,0,0.4);
+    margin-bottom: 30px;
+}
+
+/* ---------- Search ---------- */
+.search-container {
+    margin-bottom: 30px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 260px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    font-size: 1em;
 }
 
 button {
-    background-color: #ccc;
+    background-color: #0078d7;
+    color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #005fa3;
+}
+
+/* ---------- Results Container ---------- */
+#result-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#result-title {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 1.8em;
+    font-weight: bold;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 8px;
+}
+
+/* ---------- Result Box ---------- */
+#result {
+    background-color: rgba(255, 255, 255, 0.95); /* bright/frosted */
+    color: #000;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 12px;
+    width: 60%;
+    text-align: left;
+    font-size: 1.1em;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    display: none;
+}
+
+/* ---------- Individual Hero Cards ---------- */
+.hero-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.hero-card h4 {
+    color: #222; /* Hero name */
+    margin: 0 0 5px 0;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.hero-card h3 {
+    color: #0078d7; /* AKA alias */
+    margin: 0 0 10px 0;
+    font-weight: normal;
+}
+
+.hero-card p {
+    color: #333;
+    margin: 0;
+}
+/* ---------- "Not Found" Message ---------- */
+.not-found {
+    color: red;
+    text-align: center;
+    font-size: 0.95em;  /* slightly smaller */
+    font-weight: bold;
+    margin: 20px 0;
 }
